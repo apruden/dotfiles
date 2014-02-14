@@ -1,0 +1,56 @@
+! ~/.Xresources
+
+#ifndef HOME
+#define HOME /home/alex
+#endif
+
+*international: true
+
+!## TERMINAL COLORS {{{1
+*customization: -color
+*color0:  #000000
+*color1:  #aa0000
+*color2:  #00aa00
+*color3:  #aa5522
+*color4:  #0000aa
+*color5:  #aa00aa
+*color6:  #00aaaa
+*color7:  #aaaaaa
+*color8:  #555555
+*color9:  #ff4444
+*color10: #44ff44
+*color11: #ffff00
+*color12: #4444ff
+*color13: #ff00ff
+*color14: #00ffff
+*color15: #ffffff
+*colorBD: #ffffff
+! }}}1
+!## XTERM {{{1
+XTerm.background:        #000000
+XTerm.VT100.background:  #000000
+XTerm.foreground:        #aaaaaa
+XTerm.VT100.foreground:  #aaaaaa
+XTerm.termName:    xterm-256color
+XTerm*ttyModes:    start ^- stop ^-
+XTerm*boldMode:    false
+XTerm*allowBoldFonts: false
+XTerm*scrollBar:   false
+!XTerm*backarrowKey: false
+XTerm*Maximized: true
+XTerm*colorBDMode: true
+XTerm*visualBell: false
+XTerm*eightBitInput: false
+XTerm*modifyCursorKeys: 2
+XTerm*trimSelection: true
+XTerm*CharClass: 33:48,37-38:48,45-47:48,58:48,61:48,63-64:48,126:48,161-255:48
+XTerm*activeIcon: true
+XTerm.VT100.translations: #override \
+	Ctrl<Key>comma: smaller-vt-font() \n\
+	Ctrl<Key>period: larger-vt-font() \n\
+	Ctrl<Key>9: scroll-forw(1,page-1) \n\
+	Ctrl<Key>0: scroll-back(1,page-1) \n\
+	<Key>XF86Back: string(0x1b) string("[1;2D") \n\
+	<Key>XF86Forward: string(0x1b) string("[1;2C")
+XTerm*faceName: Deja Vu Sans Mono:pixelsize=16
+
