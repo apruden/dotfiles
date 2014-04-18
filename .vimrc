@@ -1,4 +1,7 @@
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
 set nocompatible
+filetype off
 call pathogen#infect()
 
 if v:progname =~? "evim"
@@ -28,6 +31,8 @@ set incsearch		" do incremental searching
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -40,6 +45,8 @@ endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
+set t_Co=256
+
 if has("gui_running")
   set hlsearch
   set guifont=DejaVu\ Sans\ Mono\ 12
@@ -48,6 +55,8 @@ if has("gui_running")
   set guioptions-=r
   set lines=999 columns=999
   winpos 0 0
+"  syntax on
+"  set hlsearch
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -77,7 +86,7 @@ if has("autocmd")
     \ endif
 
   augroup END
-
+  "autocmd BufWritePost *.py call Flake8()
 else
 
   set autoindent		" always set autoindenting on
@@ -93,7 +102,6 @@ if !exists(":DiffOrig")
 endif
 
 " show with :set guifont?
-
 " source $VIMRUNTIME/mswin.vim
 " behave mswin
 
@@ -116,4 +124,3 @@ autocmd FileType python :setlocal noexpandtab
 
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set laststatus=2
-set t_Co=256
