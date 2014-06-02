@@ -34,6 +34,12 @@ map Q gq
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
 
+" Rope AutoComplete
+let ropevim_vim_completion = 1
+let ropevim_extended_complete = 1
+let g:ropevim_autoimport_modules = ["os.*","traceback"]
+imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
@@ -127,3 +133,5 @@ autocmd FileType html :setlocal sw=4 ts=4 sts=4
 autocmd FileType cpp :setlocal expandtab
 autocmd BufRead,BufNewFile *.mtpl set filetype=html
 
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+set laststatus=2
