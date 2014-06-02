@@ -52,13 +52,17 @@ endif
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 set t_Co=256
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
 
 if has("gui_running")
-	set lines=999 columns=999
+  set hlsearch
+  set guifont=DejaVu\ Sans\ Mono\ 12
+" set guifont=Lucida_Console:h14:cANSI
+  set guioptions-=T
+  set guioptions-=r
+  set lines=999 columns=999
+  winpos 0 0
+"  syntax on
+"  set hlsearch
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -87,8 +91,8 @@ if has("autocmd")
     \   exe "normal! g`\"" |
     \ endif
 
-  autocmd BufWritePost *.py call Flake8()
   augroup END
+  "autocmd BufWritePost *.py call Flake8()
 else
 
   set autoindent		" always set autoindenting on
@@ -103,35 +107,26 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-set guifont=DejaVu\ Sans\ Mono\ 11
-set guioptions-=T
-set guioptions-=r
-
-"winpos 0 0
-
-
+" show with :set guifont?
 " source $VIMRUNTIME/mswin.vim
 " behave mswin
 
-" syntax on
-" filetype plugin indent on
-
+syntax on
 colorscheme molokai
 
 let g:user_zen_expandabbr_key = '<c-e>'
 let g:use_zen_complete_tag = 1
 
-set noexpandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
 set listchars=tab:>-,trail:-
 set list
 
-set clipboard=unnamedplus
-autocmd FileType html :setlocal sw=4 ts=4 sts=4
-autocmd FileType cpp :setlocal expandtab
-autocmd BufRead,BufNewFile *.mtpl set filetype=html
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+autocmd FileType html,htmldjango,xml :setlocal sw=2 ts=2 sts=2 noexpandtab
+autocmd FileType erlang :setlocal sw=4 ts=4 sts=4 noexpandtab
+autocmd FileType python :setlocal noexpandtab
 
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set laststatus=2
