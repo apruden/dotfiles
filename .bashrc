@@ -132,6 +132,10 @@ alias ihub02='ssh alex.prudencio-arisp@ihub02.mdc.gameloft.org'
 alias dblocal='mysql -uroot -padmin -h localhost'
 alias rsynconline='rsync -av --delete --exclude "*.pyc" --exclude ".pydevproject" --exclude ".project" --exclude ".hg" --exclude ".hgtags" --exclude "hgadmin*" --exclude "*~" ~/workspace/* ~/bitbucket/online/.'
 alias pyclean='find -name *.pyc | xargs rm'
+alias cbcadjanus='ssh -L 10091:cad-janus-cbg001.mdc.gameloft.org:8091 -L 10092:cad-janus-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
+alias cbcadseshatprofile='ssh -L 10091:cad-seshatprofile-cbg001.mdc.gameloft.org:8091 -L 10092:cad-seshatprofile-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
+alias cbbobjanus='ssh -L 10091:bob-janus-cbg.mdc.gameloft.org:8091 -L 10092:bob-janus-cbg.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
+alias tmux='TERM=screen-256color-bce tmux'
 
 #if [ -f /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh ]; then
 #	source /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
