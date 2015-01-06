@@ -13,10 +13,13 @@ find $1 -type f \( -iname $2 ! -iname "*.hg" \)
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
+#HISTCONTROL=ignoredups:ignorespace
+HISTCONTROL=ignoredups:erasedups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -113,32 +116,30 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #<<
-export PATH=/usr/local/eclipse:~/.tmuxifier/bin:~/dev/util:/usr/local/bin:$PATH
+export PATH=~/.tmuxifier/bin:/usr/local/bin:$PATH
 
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 
-export PYTHONPATH=/home/alex/workspace/hestia/python/:/home/alex/workspace/onlineutil/python/:/home/alex/workspace/pandora/python/:/home/alex/workspace/janus/python/:/home/alex/workspace/hermes/python/:/home/alex/workspace/iris/python/:/home/alex/workspace/seshat/python/:/home/alex/workspace/mercury/python/:/home/alex/workspace/osiris/python/:/home/alex/workspace/chronos/python/:/home/alex/workspace/demeter/python/:/home/alex/workspace/postopia/python/:/home/alex/workspace/fortuna/python/:/home/alex/workspace/olympus/python/:/home/alex/workspace/ploutos/python/:/home/alex/workspace/shiva/python/:$PYTHONPATH
+#export PYTHONPATH=/home/alex/workspace/hestia/python/:/home/alex/workspace/onlineutil/python/:/home/alex/workspace/pandora/python/:/home/alex/workspace/janus/python/:/home/alex/workspace/hermes/python/:/home/alex/workspace/iris/python/:/home/alex/workspace/seshat/python/:/home/alex/workspace/mercury/python/:/home/alex/workspace/osiris/python/:/home/alex/workspace/chronos/python/:/home/alex/workspace/demeter/python/:/home/alex/workspace/postopia/python/:/home/alex/workspace/fortuna/python/:/home/alex/workspace/olympus/python/:/home/alex/workspace/ploutos/python/:/home/alex/workspace/shiva/python/:$PYTHONPATH
 
-export PYTHONSTARTUP=$HOME/.pythonstartup
-export DEBFULLNAME='Alex Prudencio (gameloft)'
-export DEBEMAIL='alex.prudencio-arispe@gameloft.com'
+#export PYTHONSTARTUP=$HOME/.pythonstartup
 
-alias alpha01='ssh alex.prudencio-arisp@alpha01.mdc.gameloft.org'
-alias alpha01-squeeze='ssh alex.prudencio-arisp@alpha01-squeeze.mdc.gameloft.org'
-alias alpha02='ssh alex.prudencio-arisp@alpha02.mdc.gameloft.org'
-alias ihub='ssh alex.prudencio-arisp@ihub.mdc.gameloft.org'
-alias ihubeur='ssh alex.prudencio-arisp@ihub.eur.mdc.gameloft.org'
-alias ihub02='ssh alex.prudencio-arisp@ihub02.mdc.gameloft.org'
-alias dblocal='mysql -uroot -padmin -h localhost'
+export PYTHONPATH=/home/alex/projects/opal/opal-python-client/target/opal-python/bin:/home/alex/projects/mica-server/mica-python-client/src/main/python:$PYTHONPATH
+
+export DEBFULLNAME='Alex Prudencio (maelstrom-research)'
+export DEBEMAIL='aprudencio@maelstrom-research.org'
+
+alias dblocal='mysql -uroot -p1234 -h localhost'
 alias rsynconline='rsync -av --delete --exclude "*.pyc" --exclude ".pydevproject" --exclude ".project" --exclude ".hg" --exclude ".hgtags" --exclude "hgadmin*" --exclude "*~" ~/workspace/* ~/bitbucket/online/.'
 alias pyclean='find -name *.pyc | xargs rm'
-alias cbcadjanus='ssh -L 10091:cad-janus-cbg001.mdc.gameloft.org:8091 -L 10092:cad-janus-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
-alias cbcadseshatprofile='ssh -L 10091:cad-seshatprofile-cbg001.mdc.gameloft.org:8091 -L 10092:cad-seshatprofile-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
-alias cbbobjanus='ssh -L 10091:bob-janus-cbg.mdc.gameloft.org:8091 -L 10092:bob-janus-cbg.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
+
+#alias cbcadjanus='ssh -L 10091:cad-janus-cbg001.mdc.gameloft.org:8091 -L 10092:cad-janus-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
+#alias cbcadseshatprofile='ssh -L 10091:cad-seshatprofile-cbg001.mdc.gameloft.org:8091 -L 10092:cad-seshatprofile-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
+
 alias tmux='TERM=screen-256color-bce tmux'
 
 #if [ -f /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh ]; then
 #	source /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
 #fi
-
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 #>>
