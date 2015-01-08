@@ -7,6 +7,9 @@
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+[submodule ".vim/bundle/vim-colors-solarized"]
+	path = .vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule ".vim/externals/vim-pathogen"]
 	path = .vim/externals/vim-pathogen
-	url = https://github.com/tpope/vim-pathogen.git
+    url = https://github.com/tpope/vim-pathogen.git
