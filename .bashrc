@@ -124,7 +124,7 @@ export PATH=~/.tmuxifier/bin:/usr/local/bin:$PATH
 
 #export PYTHONSTARTUP=$HOME/.pythonstartup
 
-export PYTHONPATH=/home/alex/projects/opal/opal-python-client/target/opal-python/bin:/home/alex/projects/mica-server/mica-python-client/src/main/python:$PYTHONPATH
+#export PYTHONPATH=/home/alex/projects/opal/opal-python-client/target/opal-python/bin:/home/alex/projects/mica-server/mica-python-client/src/main/python:$PYTHONPATH
 
 export DEBFULLNAME='Alex Prudencio (maelstrom-research)'
 export DEBEMAIL='aprudencio@maelstrom-research.org'
@@ -132,6 +132,7 @@ export DEBEMAIL='aprudencio@maelstrom-research.org'
 alias dblocal='mysql -uroot -p1234 -h localhost'
 alias rsynconline='rsync -av --delete --exclude "*.pyc" --exclude ".pydevproject" --exclude ".project" --exclude ".hg" --exclude ".hgtags" --exclude "hgadmin*" --exclude "*~" ~/workspace/* ~/bitbucket/online/.'
 alias pyclean='find -name *.pyc | xargs rm'
+alias gitpullupstream='git checkout master && git pull upstream master && git push'
 
 #alias cbcadjanus='ssh -L 10091:cad-janus-cbg001.mdc.gameloft.org:8091 -L 10092:cad-janus-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
 #alias cbcadseshatprofile='ssh -L 10091:cad-seshatprofile-cbg001.mdc.gameloft.org:8091 -L 10092:cad-seshatprofile-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'

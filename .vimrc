@@ -112,7 +112,8 @@ endif
 " behave mswin
 
 syntax on
-colorscheme molokai
+set background=dark
+colorscheme solarized
 
 set listchars=tab:>-,trail:-
 set list
