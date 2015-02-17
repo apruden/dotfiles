@@ -136,7 +136,7 @@ alias cbcadjanus='ssh -L 10091:cad-janus-cbg001.mdc.gameloft.org:8091 -L 10092:c
 alias cbcadseshatprofile='ssh -L 10091:cad-seshatprofile-cbg001.mdc.gameloft.org:8091 -L 10092:cad-seshatprofile-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
 alias cbbobjanus='ssh -L 10091:bob-janus-cbg.mdc.gameloft.org:8091 -L 10092:bob-janus-cbg.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
 alias tmux='TERM=screen-256color-bce tmux'
-
+alias vboxshared='sudo mount -t vboxsf shared ~/host'
 #if [ -f /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh ]; then
 #	source /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
 #fi
