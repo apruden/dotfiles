@@ -123,11 +123,13 @@ export PATH=~/.tmuxifier/bin:/usr/local/bin:$PATH
 #export PYTHONPATH=/home/alex/workspace/hestia/python/:/home/alex/workspace/onlineutil/python/:/home/alex/workspace/pandora/python/:/home/alex/workspace/janus/python/:/home/alex/workspace/hermes/python/:/home/alex/workspace/iris/python/:/home/alex/workspace/seshat/python/:/home/alex/workspace/mercury/python/:/home/alex/workspace/osiris/python/:/home/alex/workspace/chronos/python/:/home/alex/workspace/demeter/python/:/home/alex/workspace/postopia/python/:/home/alex/workspace/fortuna/python/:/home/alex/workspace/olympus/python/:/home/alex/workspace/ploutos/python/:/home/alex/workspace/shiva/python/:$PYTHONPATH
 
 #export PYTHONSTARTUP=$HOME/.pythonstartup
-
 #export PYTHONPATH=/home/alex/projects/opal/opal-python-client/target/opal-python/bin:/home/alex/projects/mica-server/mica-python-client/src/main/python:$PYTHONPATH
-
-export DEBFULLNAME='Alex Prudencio (maelstrom-research)'
-export DEBEMAIL='aprudencio@maelstrom-research.org'
+export DEBFULLNAME='Alex Prudencio (gameloft)'
+export DEBEMAIL='alex.prudencio-arispe@gameloft.com'
+export M2_HOME=/usr/local/apache-maven/apache-maven-3.2.3
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 alias dblocal='mysql -uroot -p1234 -h localhost'
 alias rsynconline='rsync -av --delete --exclude "*.pyc" --exclude ".pydevproject" --exclude ".project" --exclude ".hg" --exclude ".hgtags" --exclude "hgadmin*" --exclude "*~" ~/workspace/* ~/bitbucket/online/.'
@@ -138,9 +140,15 @@ alias gitpullupstream='git checkout master && git pull upstream master && git pu
 #alias cbcadseshatprofile='ssh -L 10091:cad-seshatprofile-cbg001.mdc.gameloft.org:8091 -L 10092:cad-seshatprofile-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
 
 alias tmux='TERM=screen-256color-bce tmux'
-
+alias vboxshared='sudo mount -t vboxsf shared ~/host'
 #if [ -f /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh ]; then
 #	source /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
 #fi
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+alias enablejupiter='xfreerdp --plugin cliprdr -g 1280x1024 -d enableinc.local -u alex enable.workingrooms.com'
+alias enablezeus='xfreerdp --plugin cliprdr -g 1280x1024 -d enableinc.local -u alex sws.meetatrecess.com'
+alias pfdev='xfreerdp --plugin cliprdr -g 1280x1024 -u Administrator 54.175.141.78'
+
+alias kbd_bl_on='echo 1 > /sys/class/leds/asus::kbd_backlight/brightness'
+alias enableftp='ncftp -u alex enable.workingrooms.com'
 #>>

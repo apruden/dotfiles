@@ -100,13 +100,15 @@
 !*foreground:        #aaaaaa
 !*VT100.foreground:  #aaaaaa
 
+*VT100.background:        S_base03
+*VT100.foreground:        S_base0
 *termName:    xterm-256color
 *ttyModes:    start ^- stop ^-
 *boldMode:    false
 *allowBoldFonts: false
 *scrollBar:   false
 !XTerm*backarrowKey: false
-*faceName: Deja Vu Sans Mono for Powerline:pixelsize=16
+*faceName: Deja Vu Sans Mono for Powerline:pixelsize=20
 *Maximized: true
 *colorBDMode: true
 *visualBell: false
