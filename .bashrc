@@ -122,6 +122,12 @@ export PYTHONPATH=/home/alex/workspace/hestia/python/:/home/alex/workspace/onlin
 export PYTHONSTARTUP=$HOME/.pythonstartup
 export DEBFULLNAME='Alex Prudencio (gameloft)'
 export DEBEMAIL='alex.prudencio-arispe@gameloft.com'
+export M2_HOME=/usr/local/apache-maven/apache-maven-3.2.3
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
+
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
 
 alias alpha01='ssh alex.prudencio-arisp@alpha01.mdc.gameloft.org'
 alias alpha01-squeeze='ssh alex.prudencio-arisp@alpha01-squeeze.mdc.gameloft.org'
@@ -141,4 +147,10 @@ alias vboxshared='sudo mount -t vboxsf shared ~/host'
 #	source /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
 #fi
 
+alias enablejupiter='xfreerdp --plugin cliprdr -g 1280x1024 -d enableinc.local -u alex enable.workingrooms.com'
+alias enablezeus='xfreerdp --plugin cliprdr -g 1280x1024 -d enableinc.local -u alex sws.meetatrecess.com'
+alias pfdev='xfreerdp --plugin cliprdr -g 1280x1024 -u Administrator 54.175.141.78'
+
+alias kbd_bl_on='echo 1 > /sys/class/leds/asus::kbd_backlight/brightness'
+alias enableftp='ncftp -u alex enable.workingrooms.com'
 #>>
