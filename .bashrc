@@ -6,6 +6,12 @@
 function finder() {
 find $1 -type f \( -iname $2 ! -iname "*.hg" \)
 }
+
+function gitdelbranch() {
+git branch -D $1
+git push origin -u :$1
+}
+
 #>>
 
 # If not running interactively, don't do anything
@@ -22,8 +28,8 @@ shopt -s histappend
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
