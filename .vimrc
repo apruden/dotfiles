@@ -112,6 +112,7 @@ endif
 " behave mswin
 
 syntax on
+set background=dark
 colorscheme solarized
 
 set listchars=tab:>-,trail:-
