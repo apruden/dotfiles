@@ -124,9 +124,9 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-autocmd FileType html,htmldjango,xml :setlocal sw=2 ts=2 sts=2 noexpandtab
+autocmd FileType html,htmldjango,xml :setlocal sw=2 ts=2 sts=2
 autocmd FileType erlang :setlocal sw=4 ts=4 sts=4 noexpandtab
-autocmd FileType python :setlocal sw=4 ts=4 sts=4 noexpandtab
+"autocmd FileType python :setlocal sw=4 ts=4 sts=4 noexpandtab
 
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set laststatus=2
