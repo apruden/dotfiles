@@ -132,10 +132,11 @@ export PATH=~/.tmuxifier/bin:/usr/local/bin:$PATH
 #export PYTHONPATH=/home/alex/projects/opal/opal-python-client/target/opal-python/bin:/home/alex/projects/mica-server/mica-python-client/src/main/python:$PYTHONPATH
 export DEBFULLNAME='Alex Prudencio (gameloft)'
 export DEBEMAIL='alex.prudencio-arispe@gameloft.com'
-export M2_HOME=/usr/local/apache-maven/apache-maven-3.2.3
+export M2_HOME=/usr/local/maven
 export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export EDITOR=vim
 
 alias dblocal='mysql -uroot -p1234 -h localhost'
 alias rsynconline='rsync -av --delete --exclude "*.pyc" --exclude ".pydevproject" --exclude ".project" --exclude ".hg" --exclude ".hgtags" --exclude "hgadmin*" --exclude "*~" ~/workspace/* ~/bitbucket/online/.'
@@ -158,3 +159,7 @@ alias pfdev='xfreerdp --plugin cliprdr -g 1280x1024 -u Administrator 54.175.141.
 alias kbd_bl_on='echo 1 > /sys/class/leds/asus::kbd_backlight/brightness'
 alias enableftp='ncftp -u alex enable.workingrooms.com'
 #>>
+
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+source /home/alex/.bash_local
