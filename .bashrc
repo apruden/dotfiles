@@ -122,7 +122,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #<<
-export PATH=~/.tmuxifier/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/jruby/bin:/usr/local/eclipse:~/.tmuxifier/bin:~/dev/util:/usr/local/bin:$PATH
 
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 
@@ -152,14 +152,24 @@ alias vboxshared='sudo mount -t vboxsf shared ~/host'
 #	source /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
 #fi
 
-alias enablejupiter='xfreerdp --plugin cliprdr -g 1280x1024 -d enableinc.local -u alex enable.workingrooms.com'
-alias enablezeus='xfreerdp --plugin cliprdr -g 1280x1024 -d enableinc.local -u alex sws.meetatrecess.com'
+alias enablejupiter='xfreerdp --plugin cliprdr -g 1280x1024 -d enableinc.local -u alex sws.meetatrecess.com'
+alias enabledev='xfreerdp --plugin cliprdr -g 1280x1024 -d enableinc.local -u alex wrtrunk.esundev.com'
+alias enablezeus='xfreerdp --plugin cliprdr -g 1280x1024 -u administrator 104.193.50.35'
 alias pfdev='xfreerdp --plugin cliprdr -g 1280x1024 -u Administrator 54.175.141.78'
+alias enablemagento='sshpass -p "N3Wvhm5102#3N@" ssh -oBatchMode=no root@67.213.69.212'
 
-alias kbd_bl_on='echo 1 > /sys/class/leds/asus::kbd_backlight/brightness'
+alias kbd_bl_on='echo 1 | sudo tee /sys/class/leds/asus::kbd_backlight/brightness'
 alias enableftp='ncftp -u alex enable.workingrooms.com'
 #>>
 
 export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+if which tmux >/dev/null 2>&1; then
+    test -z ${TMUX} && tmux
+
+    while test -z ${TMUX}; do
+        tmux attach || break
+    done
+fi
 
 source /home/alex/.bash_local
