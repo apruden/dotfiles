@@ -127,7 +127,7 @@ fi
 #<<
 export DEBFULLNAME='Alex Prudencio (gameloft)'
 export DEBEMAIL='alex.prudencio-arispe@gameloft.com'
-export M2_HOME=/usr/local/apache-maven/apache-maven-3.2.3
+export M2_HOME=/usr/local/maven
 export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
@@ -148,6 +148,7 @@ export PATH=/usr/local/jruby/bin:/usr/local/eclipse:~/.tmuxifier/bin:~/dev/util:
 
 #export PYTHONSTARTUP=$HOME/.pythonstartup
 #export PYTHONPATH=/home/alex/projects/opal/opal-python-client/target/opal-python/bin:/home/alex/projects/mica-server/mica-python-client/src/main/python:$PYTHONPATH
+export EDITOR=vim
 
 alias dblocal='mysql -uroot -p1234 -h localhost'
 alias rsynconline='rsync -av --delete --exclude "*.pyc" --exclude ".pydevproject" --exclude ".project" --exclude ".hg" --exclude ".hgtags" --exclude "hgadmin*" --exclude "*~" ~/workspace/* ~/bitbucket/online/.'
@@ -172,6 +173,8 @@ alias kbd_bl_on='echo 1 | sudo tee /sys/class/leds/asus::kbd_backlight/brightnes
 alias enableftp='ncftp -u alex enable.workingrooms.com'
 #>>
 
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+
 if which tmux >/dev/null 2>&1; then
     test -z ${TMUX} && tmux
 
@@ -179,3 +182,5 @@ if which tmux >/dev/null 2>&1; then
         tmux attach || break
     done
 fi
+
+source /home/alex/.bash_local
