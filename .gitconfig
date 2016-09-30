@@ -13,9 +13,10 @@
     st = status
     ac = add .
     df = difftool HEAD^! --dir-dif
+    dff = difftool
 
-[diff]
-    external = git-meld
+#[diff]
+#    external = git-meld
 
 [push]
     default = simple
