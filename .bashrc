@@ -31,6 +31,8 @@ export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; histor
 HISTSIZE=10000
 HISTFILESIZE=20000
 
+R_HISTSIZE=10000
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -112,6 +114,7 @@ fi
 
 #<<
 alias myfind='finder'
+alias tymer=~/workspace/tymer/tymer
 #>>
 
 # enable programmable completion features (you don't need to enable
@@ -122,20 +125,29 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #<<
-export PATH=/usr/local/jruby/bin:/usr/local/eclipse:~/.tmuxifier/bin:~/dev/util:/usr/local/bin:$PATH
-
-[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
-
-#export PYTHONPATH=/home/alex/workspace/hestia/python/:/home/alex/workspace/onlineutil/python/:/home/alex/workspace/pandora/python/:/home/alex/workspace/janus/python/:/home/alex/workspace/hermes/python/:/home/alex/workspace/iris/python/:/home/alex/workspace/seshat/python/:/home/alex/workspace/mercury/python/:/home/alex/workspace/osiris/python/:/home/alex/workspace/chronos/python/:/home/alex/workspace/demeter/python/:/home/alex/workspace/postopia/python/:/home/alex/workspace/fortuna/python/:/home/alex/workspace/olympus/python/:/home/alex/workspace/ploutos/python/:/home/alex/workspace/shiva/python/:$PYTHONPATH
-
-#export PYTHONSTARTUP=$HOME/.pythonstartup
-#export PYTHONPATH=/home/alex/projects/opal/opal-python-client/target/opal-python/bin:/home/alex/projects/mica-server/mica-python-client/src/main/python:$PYTHONPATH
 export DEBFULLNAME='Alex Prudencio (gameloft)'
 export DEBEMAIL='alex.prudencio-arispe@gameloft.com'
 export M2_HOME=/usr/local/maven
 export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export GOPATH=$HOME/workspace_go
+
+export SCALA_HOME=/usr/local/scala
+
+export CONSCRIPT_HOME="$HOME/.conscript"
+export CONSCRIPT_OPTS="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"
+
+export ANDROID_HOME=/usr/local/share/android/sdk
+
+export ANT_HOME=/usr/local/ant
+
+export PATH=/usr/local/jruby/bin:/usr/local/eclipse:~/.tmuxifier/bin:~/dev/util:/usr/local/bin:/usr/local/go/bin:$ANT_HOME/bin:$SCALA_HOME/bin:$CONSCRIPT_HOME/bin:/usr/local/sbt/bin:/usr/local/android-studio/bin:$ANDROID_HOME/tools:/usr/local/activator/bin:$PATH
+
+[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+
+#export PYTHONSTARTUP=$HOME/.pythonstartup
+#export PYTHONPATH=/home/alex/projects/opal/opal-python-client/target/opal-python/bin:/home/alex/projects/mica-server/mica-python-client/src/main/python:$PYTHONPATH
 export EDITOR=vim
 
 alias dblocal='mysql -uroot -p1234 -h localhost'
@@ -143,8 +155,7 @@ alias rsynconline='rsync -av --delete --exclude "*.pyc" --exclude ".pydevproject
 alias pyclean='find -name *.pyc | xargs rm'
 alias gitpullupstream='git checkout master && git pull upstream master && git push'
 
-#alias cbcadjanus='ssh -L 10091:cad-janus-cbg001.mdc.gameloft.org:8091 -L 10092:cad-janus-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
-#alias cbcadseshatprofile='ssh -L 10091:cad-seshatprofile-cbg001.mdc.gameloft.org:8091 -L 10092:cad-seshatprofile-cbg001.mdc.gameloft.org:8092 alex.prudencio-arisp@ihub.mdc.gameloft.org'
+#alias sshtunnerl='ssh -L 10091:remotehost1:8091 -L 10092:remotehost2:8092 alex@localhost.domain'
 
 alias tmux='TERM=screen-256color-bce tmux'
 alias vboxshared='sudo mount -t vboxsf shared ~/host'
