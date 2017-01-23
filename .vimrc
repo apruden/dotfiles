@@ -31,14 +31,14 @@ set incsearch		" do incremental searching
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
-map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
+" map <leader>j :RopeGotoDefinition<CR>
+" map <leader>r :RopeRename<CR>
 
 " Rope AutoComplete
-let ropevim_vim_completion = 1
-let ropevim_extended_complete = 1
-let g:ropevim_autoimport_modules = ["os.*","traceback"]
-imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+" let ropevim_vim_completion = 1
+" let ropevim_extended_complete = 1
+" let g:ropevim_autoimport_modules = ["os.*","traceback"]
+" imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -132,3 +132,9 @@ autocmd FileType javascript :setlocal sw=2 ts=2 sts=2
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set laststatus=2
 
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+let g:ycm_semantic_triggers = { 'haskell': ['.'] }
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
