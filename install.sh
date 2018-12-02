@@ -31,9 +31,6 @@ for f in .??*; do
         case "$f" in
             .git)
                 ;;
-            .vim)
-                create_link $f
-                ;;
             *)
                 create_link_recursive $f
                 ;;

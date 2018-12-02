@@ -3,12 +3,10 @@
 Install:
 ```
 ./install.sh
-./vim-update-bundles.sh
-```
 
 ## Vim
 
-YouCompleteMe
+YouCompleteMe: go to ycm folder and run
 
 ```
 python3 install.py
