@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 function finder() {
   find $1 -type f \( -iname $2 ! -iname "*.hg" \)
 }
@@ -10,9 +13,6 @@ function gitdelbranch() {
   git branch -D $1
   git push origin -u :$1
 }
-
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -25,10 +25,10 @@ shopt -s histappend
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=-1
+HISTFILESIZE=-1
 
-R_HISTSIZE=10000
+R_HISTSIZE=-1
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -58,11 +58,17 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]>\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}>\W\$ '
+PS1='[\u@\h \W]\$ '
+
+if command -v tmux>/dev/null; then
+  [[ ! $TERM =~ linux ]] && [ -z $TMUX ] && exec tmux
 fi
+
+#if [ "$color_prompt" = yes ]; then
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]>\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+#else
+#    PS1='${debian_chroot:+($debian_chroot)}>\W\$ '
+#fi
 
 unset color_prompt force_color_prompt
 
@@ -98,21 +104,23 @@ export CONSCRIPT_OPTS="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"
 export ANDROID_HOME=/opt/android-sdk
 export ANT_HOME=/usr/local/ant
 export PATH=/usr/local/jruby/bin:/usr/local/eclipse:~/.tmuxifier/bin:~/dev/util:/usr/local/bin:/usr/local/go/bin:$ANT_HOME/bin:$SCALA_HOME/bin:$CONSCRIPT_HOME/bin:/usr/local/sbt/bin:/usr/local/android-studio/bin:$ANDROID_HOME/tools:/usr/local/activator/bin:$PATH
+#export PATH="$HOME/.composer/vendor/bin:$PATH"
 
-[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
-
+#[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 #export PYTHONSTARTUP=$HOME/.pythonstartup
-#export PYTHONPATH=/home/alex/projects/opal/opal-python-client/target/opal-python/bin:/home/alex/projects/mica-server/mica-python-client/src/main/python:$PYTHONPATH
-
-
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-
-#if command -v tmux>/dev/null; then
-#    [[ ! $TERM =~ linux ]] && [ -z $TMUX ] && exec tmux
-#fi
+#export PYTHONPATH=...:$PYTHONPATH
 
 set -o vi
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/alex/google-cloud-sdk/path.bash.inc' ]; then source '/home/alex/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/alex/google-cloud-sdk/completion.bash.inc' ]; then source '/home/alex/google-cloud-sdk/completion.bash.inc'; fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/alex/.sdkman"
