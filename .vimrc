@@ -12,19 +12,19 @@ endif
 set backspace=indent,eol,start
 
 " if has("vms")   " for the VMS OS
-"  set nobackup		" do not keep a backup file, use versions instead
+"  set nobackup  " do not keep a backup file, use versions instead
 " else
-"  set backup		" keep a backup file
+"  set backup  " keep a backup file
 " endif
 
 set nobackup
 set nowritebackup
 set noswapfile
 
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set history=50  " keep 50 lines of command line history
+set ruler  " show the cursor position all the time
+set showcmd  " display incomplete commands
+set incsearch  " do incremental searching
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -39,6 +39,8 @@ map Q gq
 " let ropevim_extended_complete = 1
 " let g:ropevim_autoimport_modules = ["os.*","traceback"]
 " imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+
+set encoding=utf-8
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -95,7 +97,7 @@ if has("autocmd")
   "autocmd BufWritePost *.py call Flake8()
 else
 
-  set autoindent		" always set autoindenting on
+  set autoindent  " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -104,7 +106,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+    \ | wincmd p | diffthis
 endif
 
 " show with :set guifont?
@@ -136,5 +138,6 @@ let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 let g:ycm_semantic_triggers = { 'haskell': ['.'] }
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
