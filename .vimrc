@@ -1,8 +1,38 @@
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+function! BuildYCM(info)
+    info is a dictionary with 3 fields
+    " - name:   name of the plugin
+    " - status: 'installed', 'updated', or 'unchanged'
+    " - force:  set on PlugInstall! or PlugUpdate!
+    if a:info.status == 'installed' || a:info.force
+        !./install.py
+    endif
+endfunction
+
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+call plug#end()
+
+
 set nocompatible
-filetype off
-call pathogen#infect()
+
+" filetype off
+" call pathogen#infect()
 
 if v:progname =~? "evim"
   finish
