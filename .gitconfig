@@ -16,7 +16,7 @@
     dff = difftool
 
 [diff]
-    external = vimdiff
+    tool = vimdiff
 
 [push]
     default = simple
