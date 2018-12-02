@@ -3,6 +3,7 @@
 Install:
 ```
 ./install.sh
+```
 
 ## Vim
 
