@@ -58,17 +58,18 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-PS1='[\u@\h \W]\$ '
 
 if command -v tmux>/dev/null; then
   [[ ! $TERM =~ linux ]] && [ -z $TMUX ] && exec tmux
 fi
 
-#if [ "$color_prompt" = yes ]; then
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]>\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
-#else
-#    PS1='${debian_chroot:+($debian_chroot)}>\W\$ '
-#fi
+if [ "$color_prompt" = yes ]; then
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]>\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+    PS1='\[\033[00;33m\][\W]\$\[\033[00m\] '
+else
+    PS1='[\W]\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}>\W\$ '
+fi
 
 unset color_prompt force_color_prompt
 
