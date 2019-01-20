@@ -25,7 +25,9 @@ Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+if !has('mac')
+    Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+endif
 call plug#end()
 
 
@@ -161,13 +163,13 @@ autocmd FileType python :setlocal sw=4 ts=4 sts=4
 autocmd FileType go: setlocal sw=4 ts=4 sts=4
 autocmd FileType javascript :setlocal sw=2 ts=2 sts=2
 
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+" set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set laststatus=2
 
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 let g:ycm_semantic_triggers = { 'haskell': ['.'] }
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_server_python_interpreter = system('which python3')
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''

@@ -5,13 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-function finder() {
+function afind() {
   find $1 -type f \( -iname $2 ! -iname "*.hg" \)
-}
-
-function gitdelbranch() {
-  git branch -D $1
-  git push origin -u :$1
 }
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -25,10 +20,14 @@ shopt -s histappend
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=-1
-HISTFILESIZE=-1
 
-R_HISTSIZE=-1
+if [ ${BASH_VERSINFO[0]} -ge 4  ]; then
+    HISTSIZE=-1
+    HISTFILESIZE=-1
+else
+    HISTSIZE=10000
+    HISTFILESIZE=10000
+fi
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -73,7 +72,9 @@ fi
 
 unset color_prompt force_color_prompt
 
-source /home/alex/.bash_local
+if [ -f ~/.bash_local ]; then
+    . ~/.bash_local
+fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -94,22 +95,10 @@ fi
 export EDITOR=vim
 export DEBFULLNAME='Alex Prudencio'
 export DEBEMAIL='alex.prudencio@gmail.com'
-export M2_HOME=/usr/local/maven
-export M2=$M2_HOME/bin
-export PATH=$M2:$PATH
 export JAVA_HOME=/usr/lib/jvm/default
 export GOPATH=$HOME/workspace_go
 export SCALA_HOME=/usr/local/scala
-export CONSCRIPT_HOME="$HOME/.conscript"
-export CONSCRIPT_OPTS="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"
 export ANDROID_HOME=/opt/android-sdk
-export ANT_HOME=/usr/local/ant
-export PATH=/usr/local/jruby/bin:/usr/local/eclipse:~/.tmuxifier/bin:~/dev/util:/usr/local/bin:/usr/local/go/bin:$ANT_HOME/bin:$SCALA_HOME/bin:$CONSCRIPT_HOME/bin:/usr/local/sbt/bin:/usr/local/android-studio/bin:$ANDROID_HOME/tools:/usr/local/activator/bin:$PATH
-#export PATH="$HOME/.composer/vendor/bin:$PATH"
-
-#[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
-#export PYTHONSTARTUP=$HOME/.pythonstartup
-#export PYTHONPATH=...:$PYTHONPATH
 
 set -o vi
 
