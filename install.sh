@@ -1,12 +1,22 @@
 #!/bin/bash
 
+while getopts ":f" option; do
+    case "${option}" in
+        f)
+            echo "No dry run!!"
+            NODRYRUN=1;;
+    esac
+done
+
 function create_link() {
     f=$1
     echo "Installing $f"
     target=$HOME/$f
-    [[ -e $target  ]] && echo "cp $target{,.orig}"
+    cp_cmd="cp $target{,.orig}"
+    [[ -e $target  ]] && echo $cp_cmd && [[ ! -z $NODRYRUN ]] && ${cp_cmd}
     base=$(dirname $f)
-    echo "ln -s -f -t $HOME/$base `pwd`/$f"
+    ln_cmd="ln -s -f `pwd`/$f $HOME/$base"
+    echo ${ln_cmd} && [[ ! -z $NODRYRUN ]] && ${ln_cmd}
 }
 
 function create_link_recursive() {
