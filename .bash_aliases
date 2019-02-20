@@ -30,12 +30,14 @@ alias reboot="sudo shutdown -r now"
 alias pacman_cache_size="du -sh /var/cache/pacman/pkg"
 
 if command -v chromium>/dev/null; then
-	alias chrome="chromium > /dev/null 2>&1 &"
+    alias chrome="chromium > /dev/null 2>&1 &"
 else
-	alias chrome="google-chrome-stable > /dev/null 2>&1 &"
+    alias chrome="google-chrome-stable > /dev/null 2>&1 &"
 fi
 
-alias monitor-on="xrandr --output HDMI-1 --auto --right-of eDP-1"
-alias monitor-off="xrandr --output HDMI-1 --off"
+MONITOR=`xrandr | grep HDMI | awk '{print $1}'`
+
+alias monitor-on="xrandr --output $MONITOR --auto --right-of eDP-1"
+alias monitor-off="xrandr --output $MONITOR --off"
 alias ideaw="exec i3-msg 'workspace 3; exec /usr/local/bin/idea'"
 
