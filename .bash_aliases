@@ -23,6 +23,7 @@ alias gitpullupstream='git checkout master && git pull upstream master && git pu
 #alias sshtunnerl='ssh -L 10091:remotehost1:8091 -L 10092:remotehost2:8092 alex@localhost.domain'
 #alias tmux='TERM=screen-256color-bce tmux'
 alias vbox_mount_shared='sudo mount -t vboxsf shared ~/host'
+alias mount_users='sudo mount /dev/sdb1 /media/users/'
 #alias pfdev='xfreerdp --plugin cliprdr -g 1280x1024 -u Administrator $RDF_HOST'
 alias kbd_bl_on='echo 1 | sudo tee /sys/class/leds/asus::kbd_backlight/brightness'
 alias shutdown="echo $USER_PW | sudo -S shutdown -h now"
@@ -40,4 +41,4 @@ MONITOR=`xrandr | grep HDMI | awk '{print $1}'`
 alias monitor-on="xrandr --output $MONITOR --auto --right-of eDP-1"
 alias monitor-off="xrandr --output $MONITOR --off"
 alias ideaw="exec i3-msg 'workspace 3; exec /usr/local/bin/idea'"
-
+alias histgrep="history | grep"

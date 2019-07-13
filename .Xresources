@@ -111,7 +111,7 @@
 *allowBoldFonts: false
 *scrollBar:   false
 !XTerm*backarrowKey: false
-*faceName: Deja Vu Sans Mono for Powerline:pixelsize=20
+*faceName: Mono:pixelsize=14
 *Maximized: true
 *colorBDMode: true
 *visualBell: false

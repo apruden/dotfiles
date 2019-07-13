@@ -93,6 +93,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 export EDITOR=vim
+export TERMINAL=termite
 export DEBFULLNAME='Alex Prudencio'
 export DEBEMAIL='alex.prudencio@gmail.com'
 export JAVA_HOME=/usr/lib/jvm/default
@@ -108,10 +109,12 @@ if [ -f '/home/alex/google-cloud-sdk/path.bash.inc' ]; then source '/home/alex/g
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/alex/google-cloud-sdk/completion.bash.inc' ]; then source '/home/alex/google-cloud-sdk/completion.bash.inc'; fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/alex/.sdkman"
 [[ -s "/home/alex/.sdkman/bin/sdkman-init.sh" ]] && source "/home/alex/.sdkman/bin/sdkman-init.sh"
+
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+source /usr/share/nvm/init-nvm.sh
