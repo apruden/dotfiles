@@ -22,3 +22,5 @@
     default = simple
 [credential]
 	helper = store
+[github]
+	user = alex.prudencio@gmail.com

@@ -25,9 +25,10 @@ Plug 'mattn/emmet-vim', { 'for': 'html' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-if !has('mac')
-    Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-endif
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
 call plug#end()
 
 
@@ -169,7 +170,45 @@ set laststatus=2
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-let g:ycm_semantic_triggers = { 'haskell': ['.'] }
-let g:ycm_server_python_interpreter = system('which python3')
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
+
+if executable('java') && filereadable('/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.5.400.v20190515-0925.jar')
+        au User lsp_setup call lsp#register_server({
+                \ 'name': 'eclipse.jdt.ls',
+                \ 'cmd': {server_info->[
+                \     'java',
+                \     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+                \     '-Dosgi.bundles.defaultStartLevel=4',
+                \     '-Declipse.product=org.eclipse.jdt.ls.core.product',
+                \     '-Dlog.level=ALL',
+                \     '-noverify',
+                \     '-Dfile.encoding=UTF-8',
+                \     '-Xmx1G',
+                \     '-jar',
+                \     expand('/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.5.400.v20190515-0925.jar'),
+                \     '-configuration',
+                \     expand('/usr/share/java/jdtls/config_linux'),
+                \     '-data',
+                \     getcwd()
+                \ ]},
+                \ 'whitelist': ['java'],
+                \ })
+endif
+
+if executable('typescript-language-server')
+        au User lsp_setup call lsp#register_server({
+                \ 'name': 'typescript-language-server',
+                \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+                \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+                \ 'whitelist': ['typescript', 'typescript.tsx'],
+                \ })
+endif
+
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')
+
+" for asyncomplete.vim log
+let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+
+let g:ctrlp_working_path_mode = 0

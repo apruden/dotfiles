@@ -9,6 +9,12 @@ function afind() {
   find $1 -type f \( -iname $2 ! -iname "*.hg" \)
 }
 
+function netdiag() {
+  ip link show
+  systemctl status netctl
+  systemctl status dhcpcd
+}
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 #HISTCONTROL=ignoredups:ignorespace
