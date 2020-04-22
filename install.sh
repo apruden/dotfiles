@@ -1,21 +1,25 @@
 #!/bin/bash
 
-while getopts ":f" option; do
+TARGET_DIR=$HOME
+
+while getopts ":f:d:" option; do
     case "${option}" in
         f)
             echo "No dry run!!"
             NODRYRUN=1;;
+        d)
+            TARGET_DIR=${OPTARG}
     esac
 done
 
 function create_link() {
     f=$1
     echo "Installing $f"
-    target=$HOME/$f
-    cp_cmd="cp $target{,.orig}"
-    [[ -e $target  ]] && echo $cp_cmd && [[ ! -z $NODRYRUN ]] && ${cp_cmd}
+    target=$TARGET_DIR/$f
+    backup_cmd="cp $target{,.orig}"
+    [[ -e $target  ]] && echo $backup_cmd && [[ ! -z $NODRYRUN ]] && ${backup_cmd}
     base=$(dirname $f)
-    ln_cmd="ln -s -f `pwd`/$f $HOME/$base"
+    ln_cmd="mkdir -p $TARGET_DIR/$base && ln -s -f `pwd`/$f $TARGET_DIR/$base"
     echo ${ln_cmd} && [[ ! -z $NODRYRUN ]] && ${ln_cmd}
 }
 
@@ -26,7 +30,6 @@ function create_link_recursive() {
         create_link $g
     done
 }
-
 
 for f in .??*; do
     if [ -f $f ]; then

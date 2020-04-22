@@ -120,7 +120,5 @@ if [ -f '/home/alex/google-cloud-sdk/completion.bash.inc' ]; then source '/home/
 export SDKMAN_DIR="/home/alex/.sdkman"
 [[ -s "/home/alex/.sdkman/bin/sdkman-init.sh" ]] && source "/home/alex/.sdkman/bin/sdkman-init.sh"
 
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-source /usr/share/nvm/init-nvm.sh
+[[ -s "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
+
