@@ -7,8 +7,8 @@ Install:
 
 ## Vim
 
-YouCompleteMe: go to ycm folder and run
-
+Java LSP:
 ```
-python3 install.py
+yay -Syu jdtls
+sudo chmod a+w /usr/share/java/jdtls/config_linux
 ```
