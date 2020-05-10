@@ -36,10 +36,5 @@ else
     alias chrome="google-chrome-stable > /dev/null 2>&1 &"
 fi
 
-MONITOR=`xrandr | grep HDMI | grep -v disconnected | awk '{print $1}'`
-
-
-alias monitor-on="xrandr --output '$MONITOR' --auto --right-of eDP-1"
-alias monitor-off="xrandr --output '$MONITOR' --off"
 alias ideaw="exec i3-msg 'workspace 3; exec /usr/local/bin/idea'"
 alias histgrep="history | grep"
