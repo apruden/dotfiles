@@ -5,6 +5,15 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+case "$(uname -s)" in
+    Darwin)
+        OS=Mac
+        ;;
+    *)
+        OS=Linux
+        ;;
+esac
+
 function afind() {
   find $1 -type f \( -iname $2 ! -iname "*.hg" \)
 }
@@ -102,7 +111,6 @@ export EDITOR=vim
 export TERMINAL=termite
 export DEBFULLNAME='Alex Prudencio'
 export DEBEMAIL='alex.prudencio@gmail.com'
-export JAVA_HOME=/usr/lib/jvm/default
 export GOPATH=$HOME/workspace_go
 export SCALA_HOME=/usr/local/scala
 export ANDROID_HOME=/opt/android-sdk
@@ -110,15 +118,28 @@ export ANDROID_HOME=/opt/android-sdk
 set -o vi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/alex/google-cloud-sdk/path.bash.inc' ]; then source '/home/alex/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/path.bash.inc' ]; then source '$HOME/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/alex/google-cloud-sdk/completion.bash.inc' ]; then source '/home/alex/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/completion.bash.inc' ]; then source '$HOME/google-cloud-sdk/completion.bash.inc'; fi
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/alex/.sdkman"
-[[ -s "/home/alex/.sdkman/bin/sdkman-init.sh" ]] && source "/home/alex/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-[[ -s "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
 
+case "${OS}" in
+    Linux)
+        export JAVA_HOME=/usr/lib/jvm/default
+        [[ -s "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
+        ;;
+    Mac)
+        [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+        [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
+        ;;
+esac
+
+if [ -f $HOME/.tnsrc ]; then
+    source $HOME/.tnsrc
+fi
