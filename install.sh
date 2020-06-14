@@ -2,7 +2,7 @@
 
 TARGET_DIR=$HOME
 
-while getopts ":f:d:" option; do
+while getopts ":fd:" option; do
     case "${option}" in
         f)
             echo "No dry run!!"
@@ -17,10 +17,10 @@ function create_link() {
     echo "Installing $f"
     target=$TARGET_DIR/$f
     backup_cmd="cp $target{,.orig}"
-    [[ -e $target  ]] && echo $backup_cmd && [[ ! -z $NODRYRUN ]] && ${backup_cmd}
+    [[ -e $target  ]] && echo $backup_cmd && [[ ! -z $NODRYRUN ]] && eval ${backup_cmd}
     base=$(dirname $f)
     ln_cmd="mkdir -p $TARGET_DIR/$base && ln -s -f `pwd`/$f $TARGET_DIR/$base"
-    echo ${ln_cmd} && [[ ! -z $NODRYRUN ]] && ${ln_cmd}
+    echo ${ln_cmd} && [[ ! -z $NODRYRUN ]] && eval ${ln_cmd}
 }
 
 function create_link_recursive() {

@@ -36,5 +36,22 @@ else
     alias chrome="google-chrome-stable > /dev/null 2>&1 &"
 fi
 
+function monitor-on() {
+    monitor=`xrandr | grep HDMI | grep -v disconnected | awk '{print $1}'`
+    echo "using $monitor."
+    xrandr --output $monitor --auto --right-of eDP-1
+}
+
+function monitor-off() {
+    monitor=`xrandr | grep HDMI | grep -v disconnected | awk '{print $1}'`
+    echo "using $monitor."
+    xrandr --output $monitor --off
+}
+
 alias ideaw="exec i3-msg 'workspace 3; exec /usr/local/bin/idea'"
 alias histgrep="history | grep"
+alias py3="source /home/alex/py3/bin/activate"
+
+function startdocker() {
+    echo $USER_PW | sudo -S systemctl start docker
+}
